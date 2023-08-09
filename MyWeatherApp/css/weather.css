@@ -1,0 +1,47 @@
+﻿body {
+    background-color: #0a1f44;
+}
+button{
+    margin-left:5px;
+}
+
+#input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input input{
+    margin-right:20px;
+    width:25%;
+    height:40px;
+    border-radius:5px;
+
+}
+.information {
+   
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+
+#element {
+    background-color: rgb(244, 246, 241);
+    border-radius: 10px;
+    width: 30%;
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.5s;
+}
+
+#element:hover {
+    
+    transform: scale(1.1);
+}
+h2 {
+    color: #FF69B4;
+}
+b {
+    color: #00FF00;
+}

@@ -1,0 +1,81 @@
+﻿
+@model MyWeatherApp.Models.DisplayWeather
+@{
+    ViewBag.Title = "WeatherDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="container">
+    <div id="input">
+        <input type="text" name="city" id="city" class="input" placeholder="Enter the city" />
+        <button type="submit" id="sb-button" class="btn btn-secondary">Get Weather</button>
+    </div>
+
+    <div class="information">
+
+        <div id="element" class="hover">
+            <h2>Weather condition</h2>
+            <br />
+
+            <b>Humidity:</b> <p id="humidity"></p>
+            <b>Description</b>  <p id="description"></p>
+            <b>Wind Speed</b> <p id="speed"></p>
+            <b>pressure</b>  <p id="pressure"></p>
+
+        </div>
+
+        <div id="element">
+            <h2>Geographical Location</h2>
+            <br />
+            <b>Country</b> <p id="country"></p>
+            <b>City</b> <p id="displayed-city"></p>
+            <b>Latitude</b> <p id="lat"></p>
+            <b>Longitude</b> <p id="lon"></p>
+        </div>
+
+        <div id="element">
+            <h2>Temprature Information</h2>
+            <br />
+            <b>Temprature</b> <p id="temp"></p>
+            <b>Max-temp</b> <p id="temp-max"></p>
+            <b>Min-temp</b> <p id="temp-min"></p>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#sb-button").click(function () {
+            
+            var InputCity = $("#city").val();
+            console.log(InputCity);
+            if (InputCity.length > 0) {
+                $.ajax({
+                    url: "/WeatherApp/WeatherDetails?city="+InputCity,
+                    type: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        $("#temp").text(data.temp);
+                        $("#displayed-city").text(data.name);
+                        $("#description").text(data.description);
+                        $("#humidity").text(data.humidity);
+                        $("#lat").text(data.lat);
+                        $("#lon").text(data.lon);
+                        $("#pressure").text(data.pressure);
+                        $("#speed").text(data.speed);
+                        $("#temp-max").text(data.temp_max);
+                        $("#temp-min").text(data.temp_min);
+                        $("#country").text(data.country);
+                      
+                    },
+                    error: function () {
+                        console.log("An error occurred.");
+                    }
+                });
+            }
+        });
+    },);
+</script>
